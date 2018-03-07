@@ -28,6 +28,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -35,7 +36,7 @@ android {
 ext {
     supportLibraryVersion = '26.1.0'
     retrofitVersion = '2.3.0'
-    butterKnifeVersion = '8.5.1'
+    butterKnifeVersion = '8.8.1'
     daggerVersion = '2.9'
 }
 
