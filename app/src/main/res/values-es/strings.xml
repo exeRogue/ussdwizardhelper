@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">USSD Ayudante</string>
+    <string name="action_settings">Opciones</string>
+    <string name="succes_message">EL proceso termino correctamente</string>
+    <string name="internet_error">Necesita conectarce a internet</string>
+    <string name="sim_error">La tarjeta SIM no esta habilitada</string>
+    <string name="call_error">Tiene que habilitar permisos de llamada</string>
+    <string name="accesibility_error">Tiene que habilitar los servicios de accesibilidad</string>
+    <string name="register_error">YTiene que registrar su equipo</string>
+</resources>
