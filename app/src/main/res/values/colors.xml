@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="error">7f0000</color>
-    <color name="succes">005005</color>
-    <color name="press">000063</color>
+    <color name="colorAccent">#2979FF</color>
+    <color name="error">#FF1744</color>
+    <color name="succes">#76FF03</color>
+    <color name="press">#2979FF</color>
 </resources>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">USSDWizardHelper\\</string>
     <string name="action_settings">Settings</string>
+    <string name="action_press_to_call">Press button to call</string>
     <string name="succes_message">Process end succefully</string>
     <string name="internet_error">You dont have internet connection enabled</string>
     <string name="sim_error">You sim is not enabled</string>

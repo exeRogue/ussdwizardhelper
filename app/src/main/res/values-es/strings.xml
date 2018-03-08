@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">USSD Ayudante</string>
     <string name="action_settings">Opciones</string>
+    <string name="action_press_to_call">Presiona el telefono para llamar</string>
     <string name="succes_message">EL proceso termino correctamente</string>
     <string name="internet_error">Necesita conectarce a internet</string>
     <string name="sim_error">La tarjeta SIM no esta habilitada</string>
