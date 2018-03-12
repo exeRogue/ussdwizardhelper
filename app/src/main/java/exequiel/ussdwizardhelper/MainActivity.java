@@ -2,21 +2,21 @@ package exequiel.ussdwizardhelper;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import exequiel.ussdwizardhelper.root.App;
 
 public class MainActivity extends AppCompatActivity  implements MVPWizard.View, View.OnClickListener{
 
@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity  implements MVPWizard.View, 
 
     @Inject
     MVPWizard.Presenter presenter;
+    @Inject
+    LocalStorage localStorage;
+    private String TAG = "MainActivity";
 
     @Override
     protected void onStart() {
@@ -40,9 +43,15 @@ public class MainActivity extends AppCompatActivity  implements MVPWizard.View, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((App) getApplication()).getComponent().inject(this);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         fabAction.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -74,6 +83,7 @@ public class MainActivity extends AppCompatActivity  implements MVPWizard.View, 
 
     @Override
     public void showMessage(String message) {
+        textViewState.setText(message);
 
     }
 

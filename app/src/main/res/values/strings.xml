@@ -8,4 +8,5 @@
     <string name="call_error">You need to enable call permission</string>
     <string name="accesibility_error">You need to enable accesibility service</string>
     <string name="register_error">You need to register your device</string>
+    <string name="unknown_error">Its seems to be an error</string>
 </resources>

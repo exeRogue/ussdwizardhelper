@@ -7,5 +7,6 @@
     <string name="sim_error">La tarjeta SIM no esta habilitada</string>
     <string name="call_error">Tiene que habilitar permisos de llamada</string>
     <string name="accesibility_error">Tiene que habilitar los servicios de accesibilidad</string>
-    <string name="register_error">YTiene que registrar su equipo</string>
+    <string name="register_error">Tiene que registrar su equipo</string>
+    <string name="unknown_error">Parece que hay un error</string>
 </resources>

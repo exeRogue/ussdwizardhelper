@@ -10,7 +10,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
 
 
     @Nullable
-    private MVPWizard.View view;
+    private MVPWizard.View mView;
     private final MVPWizard.Model model;
 
     public WizardPresenter(MVPWizard.Model model){
@@ -18,8 +18,8 @@ public class WizardPresenter implements MVPWizard.Presenter {
     }
 
     @Override
-    public void setView(MVPWizard.View View) {
-        this.view = view;
+    public void setView(MVPWizard.View view) {
+        this.mView = view;
     }
 
     @Override
