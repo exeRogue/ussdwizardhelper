@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import exequiel.ussdwizardhelper.LocalStorage;
+import exequiel.ussdwizardhelper.SharedPreferencesHelper;
 
 /**
  * Created by egonzalez on 08/03/18.
@@ -23,5 +25,11 @@ public class AppModule {
     @Singleton
     Application providesApplication() {
         return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    LocalStorage provideLocalStorage(Application context){
+        return  new SharedPreferencesHelper(context);
     }
 }

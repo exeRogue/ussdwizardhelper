@@ -5,10 +5,19 @@ package exequiel.ussdwizardhelper;
  */
 
 public enum State {
+        UNKNOWN_ERROR,
         NEED_CRM,
         NEED_ACCESIBILITY_SERVICE,
         NEED_CALL_SERVICE,
         NEED_SIM_ENABLED,
         READY_TO_CALL,
-        PROCESS_SUCCES
+        PROCESS_SUCCES;
+
+        public static State toState(String strState){
+                try {
+                        return valueOf(strState);
+                }catch (Exception e){
+                        return UNKNOWN_ERROR;
+                }
+        }
     }
