@@ -4,7 +4,6 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import exequiel.ussdwizardhelper.MainActivity;
-import exequiel.ussdwizardhelper.WizardModel;
 import exequiel.ussdwizardhelper.WizardModule;
 
 /**

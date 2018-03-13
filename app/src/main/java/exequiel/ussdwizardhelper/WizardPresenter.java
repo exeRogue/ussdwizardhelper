@@ -2,6 +2,11 @@ package exequiel.ussdwizardhelper;
 
 import android.support.annotation.Nullable;
 
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by egonzalez on 08/03/18.
  */
@@ -19,11 +24,34 @@ public class WizardPresenter implements MVPWizard.Presenter {
 
     @Override
     public void setView(MVPWizard.View view) {
-        this.mView = view;
+        mView = view;
     }
 
     @Override
     public void fabClicked() {
+        if (!mView.checkInternet()){
+            mView.showMessage(R.string.internet_error);
+        }else if (!mView.checkSIM()){
+            mView.showMessage(R.string.sim_error);
+        }else if (!mView.checkCall()){
+            mView.showMessage(R.string.call_error);
+        }else if (!mView.checkAccesibility()){
+            mView.showMessage(R.string.accesibility_error);
+        }else {
+            model.getUser()
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<User>() {
+                        @Override
+                        public void call(User user) {
+                            try {
 
+                            }catch (Exception e){
+                                mView.showMessage(R.string.register_error);
+                            }
+                        }
+                    });
+        }
     }
+
 }

@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="exequiel.ussdwizardhelper.MainActivity">
@@ -28,13 +29,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_phone_white_24dp" />
 
-    <TextView
-        android:id="@+id/textViewState"
-        android:textSize="24dp"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="@string/action_press_to_call" />
+
 
 </android.support.design.widget.CoordinatorLayout>

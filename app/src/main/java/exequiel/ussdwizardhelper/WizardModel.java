@@ -1,5 +1,7 @@
 package exequiel.ussdwizardhelper;
 
+import rx.Observable;
+
 /**
  * Created by egonzalez on 08/03/18.
  */
@@ -13,7 +15,7 @@ public class WizardModel implements MVPWizard.Model{
     }
 
     @Override
-    public User getUser() {
+    public Observable<User> getUser() {
         return repo.getUser();
     }
 }

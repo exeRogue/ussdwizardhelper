@@ -1,15 +1,20 @@
 package exequiel.ussdwizardhelper;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
 
 
 import javax.inject.Inject;
@@ -17,20 +22,20 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import exequiel.ussdwizardhelper.root.App;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity  implements MVPWizard.View, View.OnClickListener{
 
     @BindView(R.id.fabAction)
     FloatingActionButton fabAction;
-    @BindView(R.id.textViewState)
-    TextView textViewState;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Inject
     MVPWizard.Presenter presenter;
-    @Inject
-    LocalStorage localStorage;
+
     private String TAG = "MainActivity";
 
     @Override
@@ -78,22 +83,50 @@ public class MainActivity extends AppCompatActivity  implements MVPWizard.View, 
 
     @Override
     public void onClick(View view) {
-
+        presenter.fabClicked();
     }
 
     @Override
-    public void showMessage(String message) {
-        textViewState.setText(message);
-
+    public void showMessage(int messageId) {
+        Snackbar.make(findViewById(R.id.myCoordinatorLayout), messageId, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void changeFab(int imageId, int colorId) {
+    public boolean checkInternet() {
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
+        if (mWifi.isConnected()) {
+        return true;
+        }
+
+        return false;
     }
 
     @Override
-    public void changeFabLogic(int state) {
-
+    public boolean checkCall() {
+        int checkPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+        if (checkPermission != PackageManager.PERMISSION_GRANTED)
+        {
+            return false;
+        }
+            return true;
     }
+
+    @Override
+    public boolean checkSIM() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        int state = telephonyManager.getSimState();
+        if (state == TelephonyManager.SIM_STATE_READY){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean checkAccesibility() {
+        return false;
+    }
+
+
 }

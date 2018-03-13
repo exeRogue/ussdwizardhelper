@@ -1,14 +1,19 @@
 package exequiel.ussdwizardhelper;
 
+import rx.Observable;
+
 /**
  * Created by egonzalez on 08/03/18.
  */
 
 public interface MVPWizard {
     interface View{
-        void showMessage(String message);
-        void changeFab(int imageId, int colorId);
-        void changeFabLogic(int state);
+        void showMessage(int messageId);
+        boolean checkInternet();
+        boolean checkCall();
+        boolean checkSIM();
+        boolean checkAccesibility();
+
     }
 
     interface Presenter{
@@ -17,10 +22,10 @@ public interface MVPWizard {
     }
 
     interface Model{
-        User getUser();
+        Observable<User> getUser();
     }
 
     interface Repository{
-        User getUser();
+        Observable<User> getUser();
     }
 }
