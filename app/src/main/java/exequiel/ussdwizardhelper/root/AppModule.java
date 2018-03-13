@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import exequiel.ussdwizardhelper.data.LocalStorage;
+import exequiel.ussdwizardhelper.data.SharedPrefStorage;
 
 /**
  * Created by egonzalez on 08/03/18.
@@ -25,4 +27,9 @@ public class AppModule {
         return mApplication;
     }
 
+    @Provides
+    @Singleton
+    public LocalStorage provideLocalStorage(Application application){
+        return  new SharedPrefStorage(application);
+    }
 }

@@ -1,5 +1,6 @@
 package exequiel.ussdwizardhelper;
 
+import exequiel.ussdwizardhelper.data.User;
 import rx.Observable;
 
 /**
@@ -13,6 +14,7 @@ public interface MVPWizard {
         boolean checkCall();
         boolean checkSIM();
         boolean checkAccesibility();
+        void callUSSDService();
 
     }
 
@@ -23,9 +25,12 @@ public interface MVPWizard {
 
     interface Model{
         Observable<User> getUser();
+        void saveUser(String uID, String uDate);
     }
 
     interface Repository{
         Observable<User> getUser();
+
+        void saveUser(String uid, String uDate);
     }
 }

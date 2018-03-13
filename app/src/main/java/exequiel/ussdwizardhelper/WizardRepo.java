@@ -1,5 +1,9 @@
 package exequiel.ussdwizardhelper;
 
+import javax.inject.Inject;
+
+import exequiel.ussdwizardhelper.data.LocalStorage;
+import exequiel.ussdwizardhelper.data.User;
 import rx.Observable;
 
 /**
@@ -7,6 +11,9 @@ import rx.Observable;
  */
 
 public class WizardRepo implements MVPWizard.Repository {
+
+    @Inject
+    LocalStorage localStorage;
 
     public WizardRepo(){
 
@@ -16,4 +23,11 @@ public class WizardRepo implements MVPWizard.Repository {
     public Observable<User> getUser() {
         return null;
     }
+
+    @Override
+    public void saveUser(String uid, String uDate) {
+        localStorage.writeString("uid", uid);
+        localStorage.writeString("udate", uDate);
+    }
+
 }
