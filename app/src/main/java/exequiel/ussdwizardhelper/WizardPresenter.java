@@ -1,6 +1,7 @@
 package exequiel.ussdwizardhelper;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import exequiel.ussdwizardhelper.data.User;
 import rx.android.schedulers.AndroidSchedulers;
@@ -17,6 +18,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
     @Nullable
     private MVPWizard.View mView;
     private final MVPWizard.Model model;
+    private String TAG = WizardPresenter.class.getCanonicalName();
 
     public WizardPresenter(MVPWizard.Model model){
         this.model = model;
@@ -40,7 +42,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
         }else {
 
             /**
-             * Improve these yet i need the ws 
+             * Improve these yet i need the ws
              */
             try {
                 model.getUser()
@@ -49,9 +51,10 @@ public class WizardPresenter implements MVPWizard.Presenter {
                         .subscribe(new Action1<User>() {
                             @Override
                             public void call(User user) {
-                                model.saveUser(user.getUID(), user.getUDate());
-                                mView.callUSSDService();
 
+                                Log.d(TAG, user.getDate()+" "+user.getUid());
+                                model.saveUser(user.getUid(), user.getDate());
+                                mView.callUSSDService();
                             }
 
                         });

@@ -15,6 +15,17 @@ buildscript {
     }
 }
 
+plugins {
+    id "me.tatarka.retrolambda" version "3.7.0"
+}
+
+retrolambda {
+    javaVersion JavaVersion.VERSION_1_7
+    jvmArgs '-arg1', '-arg2'
+    defaultMethods false
+    incremental true
+}
+
 allprojects {
     repositories {
         google()

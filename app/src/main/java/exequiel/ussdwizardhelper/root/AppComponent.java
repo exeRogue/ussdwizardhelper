@@ -6,14 +6,14 @@ import dagger.Component;
 import exequiel.ussdwizardhelper.MainActivity;
 import exequiel.ussdwizardhelper.WizardModule;
 import exequiel.ussdwizardhelper.data.LocalStorage;
+import exequiel.ussdwizardhelper.http.CRMApiModule;
 
 /**
  * Created by egonzalez on 08/03/18.
  */
 
 @Singleton
-@Component(modules={WizardModule.class, AppModule.class})
+@Component(modules={WizardModule.class, AppModule.class, CRMApiModule.class})
 public interface AppComponent {
-    LocalStorage localStorage();
     void inject(MainActivity target);
 }
