@@ -11,4 +11,6 @@
     <string name="unknown_error">Its seems to be an error</string>
     <string name="accessibility_service_summary">This service help the user to fill ANTEL formulary</string>
     <string name="accessibility_service_description">To fill ANTEL pre pay internet service formulary</string>
+    <string name="clickToCall">Tap the button to call</string>
+    <string name="chipAlreadyRegistered">The chip was already registered</string>
 </resources>

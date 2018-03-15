@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 import javax.inject.Inject;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     @BindView(R.id.fabAction)
     FloatingActionButton fabAction;
+    @BindView(R.id.textViewText)
+    TextView textView;
 
     @Inject
     MVPWizard.Presenter presenter;
@@ -187,6 +190,16 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));
             fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
             fabAction.setEnabled(false);
+        }
+    }
+
+    @Override
+    public void changeText(String state) {
+        if (state.equals("succes")){
+            textView.setText(R.string.succes_message);
+        }
+        if (state.equals("registered")){
+            textView.setText(R.string.chipAlreadyRegistered);
         }
     }
 

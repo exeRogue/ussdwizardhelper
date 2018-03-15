@@ -17,6 +17,8 @@ public interface MVPWizard {
         void callUSSDService();
 
         void changeFab(String state);
+
+        void changeText(String state);
     }
 
     interface Presenter{
