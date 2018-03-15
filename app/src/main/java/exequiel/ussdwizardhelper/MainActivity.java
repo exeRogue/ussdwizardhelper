@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     @BindView(R.id.fabAction)
     FloatingActionButton fabAction;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     @Inject
     MVPWizard.Presenter presenter;
@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
         setContentView(R.layout.activity_main);
         ((App) getApplication()).getComponent().inject(this);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
         fabAction.setOnClickListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        presenter.changeState();
     }
 
     @Override
@@ -174,6 +174,20 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
         startActivity(callIntent);
 
+    }
+
+    @Override
+    public void changeFab(String state) {
+        if (state.equals("succes")){
+            fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_done_white_24dp));
+            fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.succes)));
+            fabAction.setEnabled(false);
+        }
+        if (state.equals("registered")){
+            fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));
+            fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
+            fabAction.setEnabled(false);
+        }
     }
 
     private Uri ussdToCallableUri(String ussd) {

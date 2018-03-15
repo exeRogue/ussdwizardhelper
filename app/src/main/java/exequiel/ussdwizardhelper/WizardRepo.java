@@ -38,4 +38,9 @@ public class WizardRepo implements MVPWizard.Repository {
         mlocalStorage.writeString("udate", uDate);
     }
 
+    @Override
+    public String getState() {
+        return mlocalStorage.readValue("state");
+    }
+
 }

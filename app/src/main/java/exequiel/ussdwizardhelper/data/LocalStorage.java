@@ -8,5 +8,5 @@ import rx.Observable;
 
 public interface LocalStorage {
     void writeString(String key, String value);
-    Observable<String> readValue(String key);
+    String readValue(String key);
 }

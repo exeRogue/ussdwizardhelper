@@ -7,6 +7,7 @@ import exequiel.ussdwizardhelper.MainActivity;
 import exequiel.ussdwizardhelper.WizardModule;
 import exequiel.ussdwizardhelper.data.LocalStorage;
 import exequiel.ussdwizardhelper.http.CRMApiModule;
+import exequiel.ussdwizardhelper.service.USSDAntelPrePayAccesibilityService;
 
 /**
  * Created by egonzalez on 08/03/18.
@@ -16,4 +17,5 @@ import exequiel.ussdwizardhelper.http.CRMApiModule;
 @Component(modules={WizardModule.class, AppModule.class, CRMApiModule.class})
 public interface AppComponent {
     void inject(MainActivity target);
+    void inject(USSDAntelPrePayAccesibilityService ussdAntelPrePayAccesibilityService);
 }

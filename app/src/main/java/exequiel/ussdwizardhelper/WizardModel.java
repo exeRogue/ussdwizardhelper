@@ -24,4 +24,9 @@ public class WizardModel implements MVPWizard.Model{
     public void saveUser(String uID, String uDate) {
         repo.saveUser(uID, uDate);
     }
+
+    @Override
+    public String getSate() {
+        return repo.getState();
+    }
 }
