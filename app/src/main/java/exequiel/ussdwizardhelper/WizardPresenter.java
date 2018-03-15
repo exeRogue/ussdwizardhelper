@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import exequiel.ussdwizardhelper.data.User;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -44,24 +45,26 @@ public class WizardPresenter implements MVPWizard.Presenter {
             /**
              * Improve these yet i need the ws
              */
-            try {
                 model.getUser()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action1<User>() {
+                        .subscribe(new Subscriber<User>() {
                             @Override
-                            public void call(User user) {
+                            public void onCompleted() {
 
-                                Log.d(TAG, user.getDate()+" "+user.getUid());
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                mView.showMessage(R.string.register_error);
+                            }
+
+                            @Override
+                            public void onNext(User user) {
                                 model.saveUser(user.getUid(), user.getDate());
                                 mView.callUSSDService();
                             }
-
                         });
-            }catch (NullPointerException e){
-                mView.showMessage(R.string.register_error);
-
-            }
         }
     }
 

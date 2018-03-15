@@ -26,12 +26,9 @@ public class WizardRepo implements MVPWizard.Repository {
 
     @Override
     public Observable<User> getUser() {
-//        String serial = Build.SERIAL;
-//        String model = Build.MODEL;
+        String serial = Build.SERIAL;
+        String model = Build.MODEL;
 
-
-        String serial = "123456";
-        String model = "test";
         return mCRMApi.getUser(serial, model);
     }
 
