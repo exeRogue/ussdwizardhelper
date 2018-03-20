@@ -136,6 +136,14 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
             }
 
+            if (firstChild!=null && firstChild.getText().toString().contains("Los datos proporcionados son erroneos,")){
+
+                AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
+                childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                localStorage.writeString("state", "error");
+
+            }
+
         }catch (NullPointerException e)
         {
 

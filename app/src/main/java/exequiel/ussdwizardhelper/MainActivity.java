@@ -191,6 +191,12 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
             fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
             fabAction.setEnabled(false);
         }
+        if (state.equals("error")){
+            fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));
+            fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
+            fabAction.setEnabled(false);
+        }
+
     }
 
     @Override
@@ -200,6 +206,9 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
         }
         if (state.equals("registered")){
             textView.setText(R.string.chipAlreadyRegistered);
+        }
+        if (state.equals("error")){
+            textView.setText(R.string.unknown_error);
         }
     }
 
