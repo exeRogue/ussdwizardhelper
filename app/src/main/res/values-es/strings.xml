@@ -11,6 +11,6 @@
     <string name="unknown_error">Parece que hay un error</string>
     <string name="accessibility_service_summary"> Ayudante USSD para ANTEL internet prepago</string>
     <string name="accessibility_service_description">Ayuda a llenar el servicio formulario USSD de ANTEL prepago</string>
-    <string name="clickToCall">Aprieta el botton para llamar</string>
+    <string name="clickToCall">Aprieta el boton para llamar</string>
     <string name="chipAlreadyRegistered">El chip ya estaba registrado</string>
 </resources>

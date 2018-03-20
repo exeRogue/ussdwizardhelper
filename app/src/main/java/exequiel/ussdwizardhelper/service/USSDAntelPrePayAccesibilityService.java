@@ -1,7 +1,10 @@
 package exequiel.ussdwizardhelper.service;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -18,11 +21,14 @@ import exequiel.ussdwizardhelper.root.App;
 public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
     private static final String TAG = USSDAntelPrePayAccesibilityService.class.getCanonicalName();
+    private LocalBroadcastManager broadcaster;
+    public static final String RESULT_INTENT = "exequiel.ussdwizarxdhelper.result";
 
 
     @Override
     public void onCreate() {
         ((App) getApplication()).getComponent().inject(this);
+        broadcaster = LocalBroadcastManager.getInstance(this);
         super.onCreate();
     }
     @Inject
@@ -125,6 +131,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                 localStorage.writeString("state", "succes");
+                sendState("succes");
 
             }
 
@@ -133,6 +140,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                 localStorage.writeString("state", "registered");
+                sendState("registered");
 
             }
 
@@ -141,6 +149,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                 localStorage.writeString("state", "error");
+                sendState("error");
 
             }
 
@@ -155,6 +164,13 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
+
+    }
+
+    private void sendState(String state){
+        Intent intent = new Intent(RESULT_INTENT);
+        intent.putExtra("state", state);
+        broadcaster.sendBroadcast(intent);
 
     }
 }

@@ -26,6 +26,7 @@ public interface MVPWizard {
         void fabClicked();
 
         void changeState();
+        void changeState(String state);
     }
 
     interface Model{

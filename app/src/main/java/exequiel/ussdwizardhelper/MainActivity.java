@@ -1,8 +1,10 @@
 package exequiel.ussdwizardhelper;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
@@ -14,6 +16,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
@@ -43,11 +46,19 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
     MVPWizard.Presenter presenter;
 
     private String TAG = "MainActivity";
+    private BroadcastReceiver receiver ;
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.setView(this);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(USSDAntelPrePayAccesibilityService.RESULT_INTENT));
+    }
+
+    @Override
+    protected void onStop() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+        super.onStop();
     }
 
     @Override
@@ -57,6 +68,14 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
         ((App) getApplication()).getComponent().inject(this);
         ButterKnife.bind(this);
         fabAction.setOnClickListener(this);
+        receiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String state = intent.getStringExtra("state");
+                presenter.changeState(state);
+            }
+        };
     }
 
     @Override
@@ -208,7 +227,8 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
             textView.setText(R.string.chipAlreadyRegistered);
         }
         if (state.equals("error")){
-            textView.setText(R.string.unknown_error);
+            textView.setText(R.string.unknown_error
+            );
         }
     }
 
