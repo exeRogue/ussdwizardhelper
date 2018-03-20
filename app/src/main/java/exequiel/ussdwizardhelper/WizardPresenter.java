@@ -70,7 +70,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
 
     @Override
     public void changeState() {
-        if (model.getSate().equals("registered")){
+        if (model.getSate().equals("succes")){
             mView.changeFab("succes");
             mView.changeText("succes");
         }
