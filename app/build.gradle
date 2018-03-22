@@ -33,6 +33,8 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', baseUrl
+        it.buildConfigField 'String', 'PLANPARAM', planparam
+        it.buildConfigField 'String', 'PSW', psw
     }
     compileOptions {
         targetCompatibility 1.8
@@ -45,6 +47,7 @@ ext {
     retrofitVersion = '2.3.0'
     butterKnifeVersion = '8.8.1'
     daggerVersion = '2.9'
+    okhttpVersion = '3.10.0'
 }
 
 
@@ -53,19 +56,28 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:26.1.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    //rest interactions
+
+    //soap interactions
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile ("com.squareup.retrofit2:converter-simplexml:$retrofitVersion"){
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
+
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    compile "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion"
 
     //JSON Parsing
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile 'com.google.code.gson:gson:2.8.1'
 
-    //http logging
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
 
     //injection
     compile "com.google.dagger:dagger:$daggerVersion"
@@ -78,4 +90,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'io.reactivex:rxjava:1.3.0'
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
 }

@@ -1,6 +1,6 @@
 package exequiel.ussdwizardhelper;
 
-import exequiel.ussdwizardhelper.data.User;
+import exequiel.ussdwizardhelper.http.data.response.UserResponseEnvelop;
 import rx.Observable;
 
 /**
@@ -29,14 +29,14 @@ public interface MVPWizard {
     }
 
     interface Model{
-        Observable<User> getUser();
+        Observable<UserResponseEnvelop> getUser();
         void saveUser(String uID, String uDate);
 
         String getSate();
     }
 
     interface Repository{
-        Observable<User> getUser();
+        Observable<UserResponseEnvelop> getUser();
 
         void saveUser(String uid, String uDate);
 

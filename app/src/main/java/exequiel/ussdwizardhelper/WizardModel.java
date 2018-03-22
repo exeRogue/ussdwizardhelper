@@ -1,6 +1,6 @@
 package exequiel.ussdwizardhelper;
 
-import exequiel.ussdwizardhelper.data.User;
+import exequiel.ussdwizardhelper.http.data.response.UserResponseEnvelop;
 import rx.Observable;
 
 /**
@@ -16,7 +16,7 @@ public class WizardModel implements MVPWizard.Model{
     }
 
     @Override
-    public Observable<User> getUser() {
+    public Observable<UserResponseEnvelop> getUser() {
         return repo.getUser();
     }
 

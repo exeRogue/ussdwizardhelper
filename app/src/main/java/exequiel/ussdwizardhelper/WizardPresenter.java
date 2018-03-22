@@ -3,10 +3,10 @@ package exequiel.ussdwizardhelper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import exequiel.ussdwizardhelper.data.User;
+import exequiel.ussdwizardhelper.http.data.response.Nwspersonans;
+import exequiel.ussdwizardhelper.http.data.response.UserResponseEnvelop;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -48,7 +48,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
                 model.getUser()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Subscriber<User>() {
+                        .subscribe(new Subscriber<UserResponseEnvelop>() {
                             @Override
                             public void onCompleted() {
 
@@ -56,13 +56,23 @@ public class WizardPresenter implements MVPWizard.Presenter {
 
                             @Override
                             public void onError(Throwable e) {
-                                mView.showMessage(R.string.register_error);
+                                Log.d(TAG, e.toString());
                             }
 
                             @Override
-                            public void onNext(User user) {
-                                model.saveUser(user.getUid(), user.getDate());
-                                mView.callUSSDService();
+                            public void onNext(UserResponseEnvelop user) {
+                                String suceso = user.getBody().getExecuteResponse().getResultado2Ns().getSuceso();
+                                if (suceso.equals(1)){
+                                    Nwspersonans nwspersonans = user.getBody().getExecuteResponse().getNwspersonans();
+                                    Log.d(TAG, nwspersonans.toString());
+                                    String uId = nwspersonans.getNPer00NroDoc();
+                                    String uDate = nwspersonans.getNPer00FecNac();
+                                    model.saveUser(uId, uDate);
+                                    mView.callUSSDService();
+                                }else
+                                {
+                                    mView.showMessage(R.string.register_error);
+                                }
                             }
                         });
         }

@@ -2,11 +2,12 @@ package exequiel.ussdwizardhelper;
 
 import android.os.Build;
 
-import javax.inject.Inject;
-
 import exequiel.ussdwizardhelper.data.LocalStorage;
-import exequiel.ussdwizardhelper.data.User;
 import exequiel.ussdwizardhelper.http.CRMApi;
+import exequiel.ussdwizardhelper.http.data.request.K2bExecute;
+import exequiel.ussdwizardhelper.http.data.request.UserRequestBody;
+import exequiel.ussdwizardhelper.http.data.request.UserRequestEnvelop;
+import exequiel.ussdwizardhelper.http.data.response.UserResponseEnvelop;
 import rx.Observable;
 
 /**
@@ -25,11 +26,17 @@ public class WizardRepo implements MVPWizard.Repository {
     }
 
     @Override
-    public Observable<User> getUser() {
-        String serial = Build.SERIAL;
-        String model = Build.MODEL;
-
-        return mCRMApi.getUser(serial, model);
+    public Observable<UserResponseEnvelop> getUser() {
+        K2bExecute k2bExecute = new K2bExecute();
+        k2bExecute.setSerieinterna(Build.SERIAL);
+        k2bExecute.setImpceibalprodexternocodigo(Build.MODEL);
+        k2bExecute.setImpceibalplanparm(BuildConfig.PLANPARAM);
+        k2bExecute.setPsw(BuildConfig.PSW);
+        UserRequestBody body = new UserRequestBody();
+        body.setK2bExecute(k2bExecute);
+        UserRequestEnvelop envelop = new UserRequestEnvelop();
+        envelop.setBody(body);
+        return mCRMApi.getUser(envelop);
     }
 
     @Override
