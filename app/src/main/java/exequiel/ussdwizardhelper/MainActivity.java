@@ -22,6 +22,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -34,8 +36,8 @@ import exequiel.ussdwizardhelper.service.USSDAntelPrePayAccesibilityService;
 
 public class MainActivity extends AppCompatActivity implements MVPWizard.View, View.OnClickListener {
 
-    @BindView(R.id.fabAction)
-    FloatingActionButton fabAction;
+    @BindView(R.id.button_action)
+    ImageButton fabAction;
     @BindView(R.id.textViewText)
     TextView textView;
 

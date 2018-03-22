@@ -26,4 +26,9 @@ public class SharedPrefStorage implements  LocalStorage{
     public String readValue(final String key) {
                 return mContext.getSharedPreferences("mySharedPrefDB", Context.MODE_PRIVATE).getString(key, "");
          }
+
+    @Override
+    public void clearStorage() {
+        mContext.getSharedPreferences("mySharedPrefDB", Context.MODE_PRIVATE).edit().clear().apply();
+    }
 }

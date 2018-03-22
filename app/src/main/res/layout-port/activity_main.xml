@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myCoordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="exequiel.ussdwizardhelper.MainActivity">
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fabAction"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:padding="8dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--app:srcCompat="@drawable/ic_phone_white_24dp" />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:padding="8dp"
+            android:text="@string/clickToCall"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="34sp" />
+
+        <ImageButton
+            android:id="@+id/button_action"
+            android:layout_width="550dp"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:layout_height="550dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/press"
+            android:elevation="2dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_phone_white_24dp" />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
