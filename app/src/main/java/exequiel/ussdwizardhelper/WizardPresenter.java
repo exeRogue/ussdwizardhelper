@@ -6,6 +6,7 @@ import android.util.Log;
 import exequiel.ussdwizardhelper.http.data.response.Nwspersonans;
 import exequiel.ussdwizardhelper.http.data.response.UserResponseEnvelop;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -20,6 +21,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
     private MVPWizard.View mView;
     private final MVPWizard.Model model;
     private String TAG = WizardPresenter.class.getCanonicalName();
+    private Subscription subscription;
 
     public WizardPresenter(MVPWizard.Model model){
         this.model = model;
@@ -45,7 +47,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
             /**
              * Improve these yet i need the ws
              */
-                model.getUser()
+                subscription = model.getUser()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Subscriber<UserResponseEnvelop>() {
@@ -62,6 +64,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
                             @Override
                             public void onNext(UserResponseEnvelop user) {
                                 String suceso = user.getBody().getExecuteResponse().getResultado2Ns().getSuceso();
+                                Log.d(TAG, suceso);
                                 if (suceso.equals(1)){
                                     Nwspersonans nwspersonans = user.getBody().getExecuteResponse().getNwspersonans();
                                     Log.d(TAG, nwspersonans.toString());
@@ -87,6 +90,16 @@ public class WizardPresenter implements MVPWizard.Presenter {
         if (model.getSate().equals("registered")){
             mView.changeFab("registered");
             mView.changeText("registered");
+        }
+    }
+
+
+    @Override
+    public void rxUnsubscribe() {
+        if (subscription != null) {
+            if (!subscription.isUnsubscribed()) {
+                subscription.unsubscribe();
+            }
         }
     }
 

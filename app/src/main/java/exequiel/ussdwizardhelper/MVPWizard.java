@@ -25,6 +25,8 @@ public interface MVPWizard {
         void setView(View View);
         void fabClicked();
 
+        void rxUnsubscribe();
+
         void changeState();
     }
 

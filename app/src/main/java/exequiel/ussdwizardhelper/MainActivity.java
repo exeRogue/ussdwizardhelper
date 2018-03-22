@@ -230,4 +230,9 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
         return Uri.parse(uriString);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.rxUnsubscribe();
+    }
 }
