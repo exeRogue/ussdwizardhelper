@@ -76,7 +76,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
                 bundle.putCharSequence(AccessibilityNodeInfo
-                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, localStorage.readValue("udate").split("/")[2]);
+                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, localStorage.readValue("udate").split("-")[2]);
                 editTextChild.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, bundle);
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -88,7 +88,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
                 bundle.putCharSequence(AccessibilityNodeInfo
-                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, localStorage.readValue("udate").split("/")[1]);
+                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, localStorage.readValue("udate").split("-")[1]);
                 editTextChild.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, bundle);
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -100,7 +100,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
                 bundle.putCharSequence(AccessibilityNodeInfo
-                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, localStorage.readValue("udate").split("/")[0]);
+                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, localStorage.readValue("udate").split("-")[0]);
                 editTextChild.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, bundle);
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
