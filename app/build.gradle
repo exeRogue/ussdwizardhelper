@@ -31,11 +31,31 @@ android {
             signingConfig signingConfigs.config
         }
     }
+
+    flavorDimensions "apiUrl"
+
+    productFlavors{
+        devel{
+            dimension "apiUrl"
+            buildConfigField 'String', 'BASE_URL', baseUrl
+        }
+
+        preprod{
+            dimension "apiUrl"
+            buildConfigField 'String', 'BASE_URL', baseUrlPreProd
+        }
+
+        prod{
+            dimension "apiUrl"
+            buildConfigField 'String', 'BASE_URL', baseUrlProd
+        }
+    }
+
     buildTypes.each {
-        it.buildConfigField 'String', 'BASE_URL', baseUrl
         it.buildConfigField 'String', 'PLANPARAM', planparam
         it.buildConfigField 'String', 'PSW', psw
     }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
