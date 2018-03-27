@@ -65,7 +65,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
                             public void onNext(UserResponseEnvelop user) {
                                 String suceso = user.getBody().getExecuteResponse().getResultado2Ns().getSuceso();
                                 Log.d(TAG, suceso);
-                                if (suceso.equals(1)){
+                                if (suceso.equals("1")){
                                     Nwspersonans nwspersonans = user.getBody().getExecuteResponse().getNwspersonans();
                                     Log.d(TAG, nwspersonans.toString());
                                     String uId = nwspersonans.getNPer00NroDoc();
