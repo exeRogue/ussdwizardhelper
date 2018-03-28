@@ -10,19 +10,15 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -96,7 +92,10 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     @Override
     public void showMessage(int messageId) {
-        Snackbar.make(findViewById(R.id.myCoordinatorLayout), messageId, Snackbar.LENGTH_LONG).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage(messageId);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
