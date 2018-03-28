@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">USSD Ayudante</string>
     <string name="action_settings">Opciones</string>
-    <string name="action_press_to_call">Presiona el telefono para llamar</string>
-    <string name="succes_message">EL proceso termino correctamente</string>
-    <string name="internet_error">Necesita conectarce a internet</string>
-    <string name="sim_error">La tarjeta SIM no esta habilitada</string>
-    <string name="call_error">Tiene que habilitar permisos de llamada</string>
-    <string name="accesibility_error">Tiene que habilitar los servicios de accesibilidad</string>
-    <string name="register_error">Tiene que registrar su equipo</string>
-    <string name="unknown_error">Parece que hay un error</string>
+    <string name="action_press_to_call">Presiona el botón para habilitar el chip.</string>
+    <string name="succes_message">El proceso finalizó correctamente. Chip habilitado</string>
+    <string name="internet_error">La tablet no tiene conexión a internet. Revisa y vuelve a intentarlo.</string>
+    <string name="sim_error"> La tarjeta SIM (chip) no está habilitada</string>
+    <string name="call_error">Es necesario habilitar permisos de llamada. </string>
+    <string name="accesibility_error">Es necesario habilitar servicios de accesibilidad.</string>
+    <string name="register_error"> La tablet no se encuentra asignada.  +</string>
+    <string name="unknown_error">Ayudante USSD para Antel internet prepago</string>
     <string name="accessibility_service_summary"> Ayudante USSD para ANTEL internet prepago</string>
-    <string name="accessibility_service_description">Ayuda a llenar el servicio formulario USSD de ANTEL prepago</string>
-    <string name="clickToCall">Aprieta el boton para llamar</string>
-    <string name="chipAlreadyRegistered">El chip ya estaba registrado</string>
+    <string name="accessibility_service_description">Ayuda a completar el servicio formulario USSD de Antel prepago</string>
+    <string name="clickToCall">Presiona el botón para habilitar el chip</string>
+    <string name="chipAlreadyRegistered">El chip ya se encuentra registrado</string>
 </resources>
