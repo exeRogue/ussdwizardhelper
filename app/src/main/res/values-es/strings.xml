@@ -13,4 +13,5 @@
     <string name="accessibility_service_description">Ayuda a completar el servicio formulario USSD de Antel prepago</string>
     <string name="clickToCall">Presiona el botón para habilitar el chip</string>
     <string name="chipAlreadyRegistered">El chip ya se encuentra registrado</string>
+    <string name="api_error">No se puede asignar en este momento, intente más tarde</string>
 </resources>
