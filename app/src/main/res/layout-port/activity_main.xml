@@ -52,8 +52,8 @@
                 android:layout_height="fill_parent">
                 <ImageButton
                     android:id="@+id/button_action"
-                    android:layout_width="match_parent"
-                    android:layout_height="550dp"
+                    android:layout_width="450dp"
+                    android:layout_height="450dp"
                     android:layout_margin="8dp"
                     android:layout_gravity="bottom|center"
                     android:adjustViewBounds="true"
