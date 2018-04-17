@@ -6,43 +6,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="exequiel.ussdwizardhelper.MainActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/fabAction"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="fill_parent"-->
-            <!--android:padding="8dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--app:srcCompat="@drawable/ic_phone_white_24dp" />-->
-    <RelativeLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/button_action"
-            android:padding="8dp"
-            android:text="@string/clickToCall"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="34sp" />
-        <ImageButton
-            android:id="@+id/button_action"
-            android:layout_width="450dp"
-            android:layout_height="450dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/press"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:elevation="2dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_phone_white_24dp" />
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clickToCall"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/button_action"
+                    android:layout_width="450dp"
+                    android:layout_height="450dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/press"
+                    android:scaleType="fitCenter"
+                    android:elevation="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="end|bottom"
+                    android:src="@drawable/ic_phone_white_24dp" />
+            </android.support.design.widget.CoordinatorLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

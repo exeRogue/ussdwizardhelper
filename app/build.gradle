@@ -10,8 +10,8 @@ android {
         applicationId "exequiel.ussdwizardhelper"
         minSdkVersion 23
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,18 +34,18 @@ android {
 
     flavorDimensions "apiUrl"
 
-    productFlavors{
-        devel{
+    productFlavors {
+        devel {
             dimension "apiUrl"
             buildConfigField 'String', 'BASE_URL', baseUrl
         }
 
-        preprod{
+        preprod {
             dimension "apiUrl"
             buildConfigField 'String', 'BASE_URL', baseUrlPreProd
         }
 
-        prod{
+        prod {
             dimension "apiUrl"
             buildConfigField 'String', 'BASE_URL', baseUrlProd
         }
@@ -81,10 +81,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-
     //soap interactions
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    compile ("com.squareup.retrofit2:converter-simplexml:$retrofitVersion"){
+    compile("com.squareup.retrofit2:converter-simplexml:$retrofitVersion") {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
         exclude group: 'xpp3', module: 'xpp3'
@@ -97,7 +96,6 @@ dependencies {
     //JSON Parsing
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile 'com.google.code.gson:gson:2.8.1'
-
 
     //injection
     compile "com.google.dagger:dagger:$daggerVersion"
