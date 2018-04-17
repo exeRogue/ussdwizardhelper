@@ -58,7 +58,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.d(TAG, e.toString());
+                                mView.showMessage(R.string.api_error);
                             }
 
                             @Override
