@@ -8,7 +8,7 @@
     <string name="call_error">Es necesario habilitar permisos de llamada. </string>
     <string name="accesibility_error">Es necesario habilitar servicios de accesibilidad.</string>
     <string name="register_error"> La tablet no se encuentra asignada. </string>
-    <string name="unknown_error">Ayudante USSD para Antel internet prepago</string>
+    <string name="unknown_error">Parece que hay un error</string>
     <string name="accessibility_service_summary"> Ayudante USSD para ANTEL internet prepago</string>
     <string name="accessibility_service_description">Ayuda a completar el servicio formulario USSD de Antel prepago</string>
     <string name="clickToCall">Presiona el botón para habilitar el chip</string>
