@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/your_number_is"
-                    android:textSize="34sp"/>
+                    android:textSize="28sp"/>
 
                 <TextView
                     android:visibility="invisible"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/mockup_number"
-                    android:textSize="34sp" />
+                    android:textSize="28sp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -89,7 +89,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
             String number = model.getNumber();
             boolean bNumber = !number.equals("");
             if (!bNumber){
-                if (!mView.checkSIM()){
+                if (mView.checkSIM()){
                     mView.callUSSDForNumber();
                 }else{
                     mView.showMessage(R.string.sim_error);
