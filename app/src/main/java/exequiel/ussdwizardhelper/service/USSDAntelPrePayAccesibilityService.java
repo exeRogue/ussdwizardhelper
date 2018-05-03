@@ -25,8 +25,10 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
         ((App) getApplication()).getComponent().inject(this);
         super.onCreate();
     }
+
     @Inject
     LocalStorage localStorage;
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
         Log.d(TAG, "onAccessibilityEvent");
@@ -34,18 +36,8 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
         if (rootNode == null) return;
         try {
             AccessibilityNodeInfo firstChild = rootNode.getChild(0);
-            if (firstChild!=null && firstChild.getText().toString().contains("Servicios de Antel USSD")){
-                Log.d(TAG,"Elejir prepago");
-                AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
-                Bundle bundle = new Bundle();
-                bundle.putCharSequence(AccessibilityNodeInfo
-                        .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, "3");
-                editTextChild.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, bundle);
-                AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
-                        childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-
-            }else if (firstChild!=null && firstChild.getText().toString().contains("Bienvenido al sistema de registro de celulares prepagos.")){
-                Log.d(TAG,"elejir dni");
+            if (firstChild != null && firstChild.getText().toString().contains("Bienvenido al sistema de registro de celulares prepagos.")) {
+                Log.d(TAG, "elejir dni");
 
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
@@ -55,10 +47,8 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 
-            } else
-
-            if (firstChild!=null && firstChild.getText().toString().contains("Por favor, ingrese su cedula de identidad sin puntos ni guiones:")){
-                Log.d(TAG,"poner cdi");
+            } else if (firstChild != null && firstChild.getText().toString().contains("Por favor, ingrese su cedula de identidad sin puntos ni guiones:")) {
+                Log.d(TAG, "poner cdi");
 
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
@@ -68,10 +58,8 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 
-            } else
-
-            if (firstChild!=null && firstChild.getText().toString().contains("Ingrese su año de su nacimiento (Ej 1989):")){
-                Log.d(TAG,"poner anio");
+            } else if (firstChild != null && firstChild.getText().toString().contains("Ingrese su año de su nacimiento (Ej 1989):")) {
+                Log.d(TAG, "poner anio");
 
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
@@ -81,9 +69,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 
-            } else
-
-            if (firstChild!=null && firstChild.getText().toString().contains("Ingrese el mes de su nacimiento (Ej 01):")){
+            } else if (firstChild != null && firstChild.getText().toString().contains("Ingrese el mes de su nacimiento (Ej 01):")) {
 
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
@@ -93,9 +79,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 AccessibilityNodeInfo childSend = rootNode.getChild(2).getChild(1);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 
-            } else
-
-            if (firstChild!=null && firstChild.getText().toString().contains("Ingrese el dia de su nacimiento (Ej 01):")){
+            } else if (firstChild != null && firstChild.getText().toString().contains("Ingrese el dia de su nacimiento (Ej 01):")) {
 
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
                 Bundle bundle = new Bundle();
@@ -107,7 +91,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
             }
 
-            if (firstChild!=null && firstChild.getText().toString().contains("Su servicio quedara registrado a nombre de")){
+            if (firstChild != null && firstChild.getText().toString().contains("Su servicio quedara registrado a nombre de")) {
 
 
                 AccessibilityNodeInfo editTextChild = rootNode.getChild(1);
@@ -120,7 +104,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
             }
 
-            if (firstChild!=null && firstChild.getText().toString().contains("Tu registro fue exitoso.")){
+            if (firstChild != null && firstChild.getText().toString().contains("Tu registro fue exitoso.")) {
 
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -128,7 +112,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
             }
 
-            if (firstChild!=null && firstChild.getText().toString().contains("Ya se encuentra registrado en el sistema.")){
+            if (firstChild != null && firstChild.getText().toString().contains("Ya se encuentra registrado en el sistema.")) {
 
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -136,7 +120,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
             }
 
-            if (firstChild!=null && firstChild.getText().toString().contains("Los datos proporcionados son erroneos,")){
+            if (firstChild != null && firstChild.getText().toString().contains("Los datos proporcionados son erroneos,")) {
 
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -144,10 +128,19 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
             }
 
-        }catch (NullPointerException e)
-        {
+            if (firstChild != null && firstChild.getText().toString().contains("Su numero de movil es")) {
 
-        }catch (ArrayIndexOutOfBoundsException e){
+                AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
+                childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                String [] text = firstChild.getText().toString().split(" ");
+                String number = text[text.length-1];
+                localStorage.writeString("number", number);
+
+            }
+
+        } catch (NullPointerException e) {
+
+        } catch (ArrayIndexOutOfBoundsException e) {
 
         }
 

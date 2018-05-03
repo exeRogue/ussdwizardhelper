@@ -29,4 +29,9 @@ public class WizardModel implements MVPWizard.Model{
     public String getSate() {
         return repo.getState();
     }
+
+    @Override
+    public String getNumber() {
+        return repo.getNumber();
+    }
 }

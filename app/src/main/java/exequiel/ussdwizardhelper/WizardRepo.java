@@ -50,4 +50,9 @@ public class WizardRepo implements MVPWizard.Repository {
         return mlocalStorage.readValue("state");
     }
 
+    @Override
+    public String getNumber() {
+        return mlocalStorage.readValue("number");
+    }
+
 }

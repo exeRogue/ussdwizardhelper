@@ -14,8 +14,10 @@ public interface MVPWizard {
         boolean checkCall();
         boolean checkSIM();
         boolean checkAccesibility();
-        void callUSSDService();
-
+        void callUSSDToRegister();
+        void callUSSDForNumber();
+        void showTextNumber(String number);
+        void showTextYorNumberIs();
         void changeFab(String state);
 
         void changeText(String state);
@@ -35,6 +37,8 @@ public interface MVPWizard {
         void saveUser(String uID, String uDate);
 
         String getSate();
+
+        String getNumber();
     }
 
     interface Repository{
@@ -43,5 +47,7 @@ public interface MVPWizard {
         void saveUser(String uid, String uDate);
 
         String getState();
+
+        String getNumber();
     }
 }

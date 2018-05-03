@@ -71,7 +71,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
                                     String uId = nwspersonans.getNPer00NroDoc();
                                     String uDate = nwspersonans.getNPer00FecNac();
                                     model.saveUser(uId, uDate);
-                                    mView.callUSSDService();
+                                    mView.callUSSDToRegister();
                                 }else
                                 {
                                     mView.showMessage(R.string.register_error);
@@ -86,6 +86,18 @@ public class WizardPresenter implements MVPWizard.Presenter {
         if (model.getSate().equals("succes")){
             mView.changeFab("succes");
             mView.changeText("succes");
+            String number = model.getNumber();
+            boolean bNumber = !number.equals("");
+            if (!bNumber){
+                if (!mView.checkSIM()){
+                    mView.callUSSDForNumber();
+                }else{
+                    mView.showMessage(R.string.sim_error);
+                }
+            }else{
+                mView.showTextYorNumberIs();
+                mView.showTextNumber(number);
+            }
         }
         if (model.getSate().equals("registered")){
             mView.changeFab("registered");

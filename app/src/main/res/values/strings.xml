@@ -14,4 +14,6 @@
     <string name="clickToCall">Tap the button to call</string>
     <string name="chipAlreadyRegistered">The chip was already registered</string>
     <string name="api_error">API is not responding</string>
+    <string name="your_number_is">Your number is:</string>
+    <string name="mockup_number">098765432</string>
 </resources>

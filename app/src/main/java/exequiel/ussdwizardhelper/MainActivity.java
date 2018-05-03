@@ -36,7 +36,10 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
     ImageButton fabAction;
     @BindView(R.id.textViewText)
     TextView textView;
-
+    @BindView(R.id.textViewYourNumber)
+    TextView textViewYourNumber;
+    @BindView(R.id.textViewNumber)
+    TextView textViewNumber;
     @Inject
     MVPWizard.Presenter presenter;
 
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     /**
      * Based on https://stackoverflow.com/a/18095283
+     *
      * @return
      */
     @Override
@@ -167,32 +171,51 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
     }
 
     @Override
-    public void callUSSDService() {
+    public void callUSSDToRegister() {
+        callUSSD("611*3#");
 
+    }
+
+    @Override
+    public void callUSSDForNumber() {
+        callUSSD("611*4#");
+    }
+
+    @Override
+    public void showTextNumber(String number) {
+        textViewNumber.setText(number);
+        textViewNumber.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTextYorNumberIs() {
+        textViewYourNumber.setVisibility(View.VISIBLE);
+    }
+
+    private void callUSSD(String number) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(ussdToCallableUri("*611#"));
+        callIntent.setData(ussdToCallableUri(number));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
         startActivity(callIntent);
-
     }
 
     @Override
     public void changeFab(String state) {
-        if (state.equals("succes")){
+        if (state.equals("succes")) {
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_done_white_24dp));
             fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.succes)));
             fabAction.setEnabled(false);
         }
-        if (state.equals("registered")){
+        if (state.equals("registered")) {
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));
             fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
             fabAction.setEnabled(false);
         }
-        if (state.equals("error")){
+        if (state.equals("error")) {
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));
             fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
             fabAction.setEnabled(false);
@@ -202,13 +225,13 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     @Override
     public void changeText(String state) {
-        if (state.equals("succes")){
+        if (state.equals("succes")) {
             textView.setText(R.string.succes_message);
         }
-        if (state.equals("registered")){
+        if (state.equals("registered")) {
             textView.setText(R.string.chipAlreadyRegistered);
         }
-        if (state.equals("error")){
+        if (state.equals("error")) {
             textView.setText(R.string.unknown_error);
         }
     }
@@ -217,12 +240,12 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
         String uriString = "";
 
-        if(!ussd.startsWith("tel:"))
+        if (!ussd.startsWith("tel:"))
             uriString += "tel:";
 
-        for(char c : ussd.toCharArray()) {
+        for (char c : ussd.toCharArray()) {
 
-            if(c == '#')
+            if (c == '#')
                 uriString += Uri.encode("#");
             else
                 uriString += c;
