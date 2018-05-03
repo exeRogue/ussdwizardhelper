@@ -172,13 +172,13 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     @Override
     public void callUSSDToRegister() {
-        callUSSD("611*3#");
+        callUSSD("*611*3#");
 
     }
 
     @Override
     public void callUSSDForNumber() {
-        callUSSD("611*4#");
+        callUSSD("*611*4#");
     }
 
     @Override
