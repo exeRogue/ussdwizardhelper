@@ -23,7 +23,7 @@ public class WizardPresenter implements MVPWizard.Presenter {
     private String TAG = WizardPresenter.class.getCanonicalName();
     private Subscription subscription;
 
-    public WizardPresenter(MVPWizard.Model model){
+    public WizardPresenter(MVPWizard.Model model) {
         this.model = model;
     }
 
@@ -34,19 +34,19 @@ public class WizardPresenter implements MVPWizard.Presenter {
 
     @Override
     public void fabClicked() {
-        if (!mView.checkInternet()){
+        if (!mView.checkInternet()) {
             mView.showMessage(R.string.internet_error);
-        }else if (!mView.checkSIM()){
+        } else if (!mView.checkSIM()) {
             mView.showMessage(R.string.sim_error);
-        }else if (!mView.checkCall()){
+        } else if (!mView.checkCall()) {
             mView.showMessage(R.string.call_error);
-        }else if (!mView.checkAccesibility()){
+        } else if (!mView.checkAccesibility()) {
             mView.showMessage(R.string.accesibility_error);
-        }else {
-
-            /**
-             * Improve these yet i need the ws
-             */
+        } else {
+            boolean bRegistered = model.getSate().equals("registered") ;
+            boolean bSucces = model.getSate().equals("succes");
+            boolean bGetNumber = bRegistered || bSucces;
+            if (!bGetNumber) {
                 subscription = model.getUser()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -65,43 +65,50 @@ public class WizardPresenter implements MVPWizard.Presenter {
                             public void onNext(UserResponseEnvelop user) {
                                 String suceso = user.getBody().getExecuteResponse().getResultado2Ns().getSuceso();
                                 Log.d(TAG, suceso);
-                                if (suceso.equals("1")){
+                                if (suceso.equals("1")) {
                                     Nwspersonans nwspersonans = user.getBody().getExecuteResponse().getNwspersonans();
                                     Log.d(TAG, nwspersonans.toString());
                                     String uId = nwspersonans.getNPer00NroDoc();
                                     String uDate = nwspersonans.getNPer00FecNac();
                                     model.saveUser(uId, uDate);
                                     mView.callUSSDToRegister();
-                                }else
-                                {
+                                } else {
                                     mView.showMessage(R.string.register_error);
                                 }
                             }
                         });
+            } else {
+                String number = model.getNumber();
+                boolean bNumber = !number.equals("");
+                if (!bNumber) {
+                    if (mView.checkSIM()) {
+                        mView.callUSSDForNumber();
+                    } else {
+                        mView.showMessage(R.string.sim_error);
+                    }
+                }
+            }
         }
     }
 
     @Override
     public void changeState() {
-        if (model.getSate().equals("succes")){
+        if (model.getSate().equals("succes")) {
             mView.changeFab("succes");
             mView.changeText("succes");
-            String number = model.getNumber();
-            boolean bNumber = !number.equals("");
-            if (!bNumber){
-                if (mView.checkSIM()){
-                    mView.callUSSDForNumber();
-                }else{
-                    mView.showMessage(R.string.sim_error);
-                }
-            }else{
-                mView.showTextYorNumberIs();
-                mView.showTextNumber(number);
-            }
+
         }
-        if (model.getSate().equals("registered")){
+        if (model.getSate().equals("registered")) {
             mView.changeFab("registered");
             mView.changeText("registered");
+        }
+
+        String number = model.getNumber();
+        boolean bNumber = !number.equals("");
+        if (bNumber){
+            mView.showTextYorNumberIs();
+            mView.showTextNumber(number);
+
         }
     }
 
