@@ -205,13 +205,19 @@ public class MainActivity extends AppCompatActivity implements MVPWizard.View, V
 
     @Override
     public void changeFab(String state) {
+        if (state.equals("register_succes")){
+            fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_done_white_24dp));
+            fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellow_succes)));
+        }
         if (state.equals("succes")) {
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_done_white_24dp));
-            fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.succes)));
+            fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.green_succes)));
+            fabAction.setEnabled(false);
         }
         if (state.equals("registered")) {
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));
             fabAction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.error)));
+            fabAction.setEnabled(false);
         }
         if (state.equals("error")) {
             fabAction.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_error_outline_white_24dp));

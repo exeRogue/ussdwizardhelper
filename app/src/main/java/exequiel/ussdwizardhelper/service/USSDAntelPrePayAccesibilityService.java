@@ -113,7 +113,7 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
 
                 AccessibilityNodeInfo childSend = rootNode.getChild(1).getChild(0);
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                localStorage.writeString("state", "succes");
+                localStorage.writeString("state", "register_succes");
 
             }
 
@@ -139,7 +139,8 @@ public class USSDAntelPrePayAccesibilityService extends AccessibilityService {
                 childSend.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                 String [] text = firstChild.getText().toString().split("\n");
                 String number = text[text.length-1];
-                localStorage.writeString("number", number);
+                localStorage.writeString("number", number);;
+                localStorage.writeString("state", "succes");
 
             }
 

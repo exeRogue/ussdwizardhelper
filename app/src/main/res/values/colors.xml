@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#2979FF</color>
     <color name="error">#FF1744</color>
-    <color name="succes">#76FF03</color>
+    <color name="green_succes">#76FF03</color>
+    <color name="yellow_succes">#ffea00</color>
     <color name="press">#2979FF</color>
 </resources>
