@@ -51,7 +51,7 @@
 
                 <TextView
                     android:visibility="invisible"
-                    android:layout_margin="2dp"
+                    android:layout_margin="8dp"
                     android:id="@+id/textViewYourNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 
                 <TextView
                     android:visibility="invisible"
-                    android:layout_margin="2dp"
+                    android:layout_margin="8dp"
                     android:id="@+id/textViewNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
