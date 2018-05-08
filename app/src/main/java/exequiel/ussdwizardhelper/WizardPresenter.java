@@ -45,7 +45,9 @@ public class WizardPresenter implements MVPWizard.Presenter {
         } else {
             boolean bRegistered = model.getSate().equals("registered") ;
             boolean bSucces = model.getSate().equals("succes");
-            boolean bGetNumber = bRegistered || bSucces;
+            boolean bRegisteredSucces = model.getSate().equals("register_succes");
+            boolean bGetNumber = bRegistered || bSucces || bRegisteredSucces;
+            Log.d(TAG, bRegistered + "" + bSucces);
             if (!bGetNumber) {
                 subscription = model.getUser()
                         .subscribeOn(Schedulers.newThread())
@@ -78,9 +80,11 @@ public class WizardPresenter implements MVPWizard.Presenter {
                             }
                         });
             } else {
+                String state = model.getSate();
                 String number = model.getNumber();
                 boolean bNumber = !number.equals("");
-                if (!bNumber) {
+                boolean bRegisterSucces = state.equals("register_succes");
+                if (!bNumber && bRegisterSucces) {
                     if (mView.checkSIM()) {
                         mView.callUSSDForNumber();
                     } else {
