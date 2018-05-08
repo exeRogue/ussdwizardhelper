@@ -51,19 +51,19 @@
 
                 <TextView
                     android:visibility="invisible"
+                    android:layout_margin="2dp"
                     android:id="@+id/textViewYourNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/your_number_is"
                     android:textSize="28sp"/>
 
                 <TextView
                     android:visibility="invisible"
+                    android:layout_margin="2dp"
                     android:id="@+id/textViewNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/mockup_number"
                     android:textSize="28sp" />
             </LinearLayout>
