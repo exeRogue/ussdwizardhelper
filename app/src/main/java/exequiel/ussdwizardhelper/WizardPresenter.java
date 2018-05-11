@@ -114,6 +114,11 @@ public class WizardPresenter implements MVPWizard.Presenter {
             mView.changeText("registered");
         }
 
+        if (state.equals("error")) {
+            mView.changeFab("error");
+            mView.changeText("error");
+        }
+
         String number = model.getNumber();
         boolean bNumber = !number.equals("");
         if (bNumber){
